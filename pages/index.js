@@ -5,15 +5,7 @@ import Seo from '../components/Seo';
 export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   };
 
   return (
@@ -21,12 +13,7 @@ export default function Home({ results }) {
       <Seo title="home" />
       {results?.map((movie) => (
         <Link
-          href={{
-            pathname: `/movies/${movie.id}`,
-            query: {
-              title: movie.original_title,
-            },
-          }}
+          href={`/movies/${movie.original_title}/${movie.id}`}
           key={movie.id}
         >
           <div
